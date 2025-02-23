@@ -11,7 +11,7 @@
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "tauri": "tauri",
-    "ios": "npm run tauri ios dev 'iPhone 16'",
+    "ios": "npm run tauri ios dev 'iPhone 16'"
   },
   "dependencies": {
     "@apollo/client": "^3.13.1",

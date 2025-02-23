@@ -7,14 +7,14 @@ export const CREATE_QUEUE_POINT = gql`
   mutation CreateQueuePoint($row: Int!) {
     createQueuePoint(row: $row) {
       row
-      # date
+      date
     }
   }
 `;
 
 // type TOptions = UseMutationOptions<UpsertDataPointMutation, UpsertDataPointMutationVariables>
 
-const useUpsertDataPointMutation = (options?: TOptions) => useMutation
+export const useCreateQueuePointMutation = (options?: TOptions) => useMutation
 // <
   // UpsertDataPointMutation,
   // UpsertDataPointMutationVariables
@@ -22,5 +22,3 @@ const useUpsertDataPointMutation = (options?: TOptions) => useMutation
 (CREATE_QUEUE_POINT, 
   // options
 );
-
-export default useUpsertDataPointMutation;
