@@ -1,9 +1,19 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { useQuery } from '@vue/apollo-composable';
+import { computed, ref } from 'vue';
+import GET_LAST_QUEUE_POINT_QUERY from './getLastQueuePoint.query';
+import { GetLastQueuePointQuery } from './gql/graphql';
 
+
+const { result } = useQuery<GetLastQueuePointQuery>(GET_LAST_QUEUE_POINT_QUERY);
+
+const lastQueuePoint = computed(() => result.value?.getLastQueuePoint)
+const lastQueuePointRow = computed(() => lastQueuePoint.value?.row ?? 0);
 // Define the number of rows and columns
 const rows = 120;
 const cols = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l'];
+
+const isQueueCell = (col: string, row: number) => [`f${row}`,'e2', 'e3', 'e5', 'e6'].includes(col + row);
 
 // Generate the cells for the matrix
 const cells = ref<{ col: string, row: number }[]>([]);
@@ -93,6 +103,7 @@ const squares = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
             :class="{
               'bg-zinc-950 -translate-1': zigzagSquares.includes(`${cell.col + cell.row + '-' + square}`),
               'bg-zinc-600 translate-full': blocks.includes(`${cell.col + cell.row + '-' + square}`),
+              '!bg-black': (lastQueuePointRow >= cell.row) && isQueueCell(cell.col, cell.row)
             }"
           >
           </div>

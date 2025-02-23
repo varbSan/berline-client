@@ -1,5 +1,14 @@
-import { createApp } from "vue";
+import { createApp, h } from "vue";
 import App from "./App.vue";
 import './assets/index.css'
+import { registerApollo } from "./api/apollo";
 
-createApp(App).mount("#app");
+const app = createApp({
+  render: () => h(App),
+});
+
+registerApollo(app);
+
+(async () => {
+  app.mount('#app');
+})();
