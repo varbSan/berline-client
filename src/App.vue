@@ -1,13 +1,16 @@
 <script setup lang="ts">
-import { useQuery } from '@vue/apollo-composable';
+import { useMutation, useQuery } from '@vue/apollo-composable';
 import { computed, ref } from 'vue';
-import GET_LAST_QUEUE_POINT_QUERY from './getLastQueuePoint.query';
-import { useCreateQueuePointMutation } from './api/mutations/createQueuePoint.mutation';
+import { GET_LAST_QUEUE_POINT_QUERY } from './getLastQueuePoint.query';
+import { CREATE_QUEUE_POINT_MUTATION } from './api/mutations/createQueuePoint.mutation';
+import { CreateQueuePointMutation, CreateQueuePointMutationVariables } from './gql/graphql';
 
 
 const { result } = useQuery(GET_LAST_QUEUE_POINT_QUERY);
-
-const { mutate: createQueuePoint } = useCreateQueuePointMutation();
+const { mutate: createQueuePoint } = useMutation<CreateQueuePointMutation, CreateQueuePointMutationVariables>(
+  CREATE_QUEUE_POINT_MUTATION,
+  { update: (cache) => cache.evict({ fieldName: 'getLastQueuePoint' }) }
+);
 const lastQueuePoint = computed(() => result.value?.getLastQueuePoint)
 const lastQueuePointRow = computed(() => lastQueuePoint.value?.row ?? 0);
 // Define the number of rows and columns
@@ -17,7 +20,7 @@ const cols = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l'];
 const isQueueCell = (col: string, row: number) => [`f${row}`,'e2', 'e3', 'e5', 'e6'].includes(col + row);
 
 async function handleCreateQueuePoint(cellRow: number) {
-  await createQueuePoint({ row: cellRow }, { update: (cache) => cache.evict({ fieldName: 'getLastQueuePoint' })}) 
+  return await createQueuePoint({ row: cellRow })
 }
 
 // Generate the cells for the matrix

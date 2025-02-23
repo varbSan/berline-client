@@ -4,18 +4,20 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite & npm run codegen:watch",
     "devtools": "./node_modules/.bin/vue-devtools",
     "lint": "npx eslint 'src/**'",
     "lint:fix": "npx eslint 'src/**' --fix",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "tauri": "tauri",
-    "ios": "npm run tauri ios dev 'iPhone 16'"
+    "ios": "npm run tauri ios dev 'iPhone 16' & npm run codegen:watch",
+    "codegen": "graphql-codegen --config codegen.ts",
+    "codegen:watch": "npm run codegen --watch \"src/**/*.{query,mutation,subscription}.ts\""
   },
   "dependencies": {
     "@apollo/client": "^3.13.1",
-    "@parcel/watcher": "^2.5.1",
+    "@graphql-codegen/cli": "^5.0.5",
     "@radix-icons/vue": "^1.0.0",
     "@tailwindcss/postcss": "^4.0.6",
     "@tauri-apps/api": "^2",
@@ -23,6 +25,7 @@
     "@vue/apollo-composable": "^4.2.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "dotenv": "^16.4.7",
     "graphql": "^16.10.0",
     "graphql-tag": "^2.12.6",
     "postcss": "^8.5.2",
@@ -33,6 +36,10 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.20.0",
+    "@graphql-codegen/cli": "5.0.5",
+    "@graphql-codegen/client-preset": "4.6.3",
+    "@graphql-codegen/introspection": "4.0.3",
+    "@parcel/watcher": "^2.5.1",
     "@tauri-apps/cli": "^2",
     "@types/node": "^22.13.1",
     "@vitejs/plugin-vue": "^5.2.1",

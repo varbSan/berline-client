@@ -1,9 +1,6 @@
 import { gql } from '@apollo/client/core';
-import { useMutation, 
-  // type UseMutationOptions 
-} from '@vue/apollo-composable';
-
-export const CREATE_QUEUE_POINT = gql`
+import { } from 'graphql.schema.json'
+export const CREATE_QUEUE_POINT_MUTATION = gql`
   mutation CreateQueuePoint($row: Int!) {
     createQueuePoint(row: $row) {
       row
@@ -12,13 +9,3 @@ export const CREATE_QUEUE_POINT = gql`
   }
 `;
 
-// type TOptions = UseMutationOptions<UpsertDataPointMutation, UpsertDataPointMutationVariables>
-
-export const useCreateQueuePointMutation = (options?: TOptions) => useMutation
-// <
-  // UpsertDataPointMutation,
-  // UpsertDataPointMutationVariables
-// >
-(CREATE_QUEUE_POINT, 
-  // options
-);
