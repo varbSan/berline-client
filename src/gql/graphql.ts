@@ -21,7 +21,6 @@ export type Scalars = {
 export type Mutation = {
   __typename?: 'Mutation';
   createQueuePoint: QueuePoint;
-  createUser: User;
 };
 
 
@@ -29,33 +28,17 @@ export type MutationCreateQueuePointArgs = {
   row: Scalars['Int']['input'];
 };
 
-
-export type MutationCreateUserArgs = {
-  email: Scalars['String']['input'];
-  name: Scalars['String']['input'];
-  password: Scalars['String']['input'];
-};
-
 export type Query = {
   __typename?: 'Query';
   getLastQueuePoint: QueuePoint;
-  getProfile: Scalars['String']['output'];
-  getUsers: Array<User>;
   hello: Scalars['String']['output'];
 };
 
 export type QueuePoint = {
   __typename?: 'QueuePoint';
   date: Scalars['DateTime']['output'];
-  row: Scalars['Int']['output'];
-};
-
-export type User = {
-  __typename?: 'User';
-  email: Scalars['String']['output'];
-  hashedPassword: Scalars['String']['output'];
   id: Scalars['Int']['output'];
-  name: Scalars['String']['output'];
+  row: Scalars['Int']['output'];
 };
 
 export type CreateQueuePointMutationVariables = Exact<{
@@ -63,13 +46,13 @@ export type CreateQueuePointMutationVariables = Exact<{
 }>;
 
 
-export type CreateQueuePointMutation = { __typename?: 'Mutation', createQueuePoint: { __typename?: 'QueuePoint', row: number, date: any } };
+export type CreateQueuePointMutation = { __typename?: 'Mutation', createQueuePoint: { __typename?: 'QueuePoint', row: number } };
 
 export type GetLastQueuePointQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetLastQueuePointQuery = { __typename?: 'Query', getLastQueuePoint: { __typename?: 'QueuePoint', row: number, date: any } };
+export type GetLastQueuePointQuery = { __typename?: 'Query', getLastQueuePoint: { __typename?: 'QueuePoint', row: number } };
 
 
-export const CreateQueuePointDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateQueuePoint"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"row"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createQueuePoint"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"row"},"value":{"kind":"Variable","name":{"kind":"Name","value":"row"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"row"}},{"kind":"Field","name":{"kind":"Name","value":"date"}}]}}]}}]} as unknown as DocumentNode<CreateQueuePointMutation, CreateQueuePointMutationVariables>;
-export const GetLastQueuePointDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetLastQueuePoint"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getLastQueuePoint"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"row"}},{"kind":"Field","name":{"kind":"Name","value":"date"}}]}}]}}]} as unknown as DocumentNode<GetLastQueuePointQuery, GetLastQueuePointQueryVariables>;
+export const CreateQueuePointDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateQueuePoint"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"row"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createQueuePoint"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"row"},"value":{"kind":"Variable","name":{"kind":"Name","value":"row"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"row"}}]}}]}}]} as unknown as DocumentNode<CreateQueuePointMutation, CreateQueuePointMutationVariables>;
+export const GetLastQueuePointDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetLastQueuePoint"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getLastQueuePoint"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"row"}}]}}]}}]} as unknown as DocumentNode<GetLastQueuePointQuery, GetLastQueuePointQueryVariables>;

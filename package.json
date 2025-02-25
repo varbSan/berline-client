@@ -13,7 +13,7 @@
     "tauri": "tauri",
     "ios": "npm run tauri ios dev 'iPhone 16' & npm run codegen:watch",
     "codegen": "graphql-codegen --config codegen.ts",
-    "codegen:watch": "npm run codegen --watch \"src/**/*.{query,mutation,subscription}.ts\""
+    "codegen:watch": "graphql-codegen --config codegen.ts --watch \"src/**/*.{query,mutation,subscription}.ts\""
   },
   "dependencies": {
     "@apollo/client": "^3.13.1",
