@@ -20,7 +20,7 @@ export type Scalars = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  createQueuePoint: QueuePoint;
+  createQueuePoint: QueuePointDto;
 };
 
 
@@ -30,12 +30,12 @@ export type MutationCreateQueuePointArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  getLastQueuePoint: QueuePoint;
+  getLastQueuePoint: QueuePointDto;
   hello: Scalars['String']['output'];
 };
 
-export type QueuePoint = {
-  __typename?: 'QueuePoint';
+export type QueuePointDto = {
+  __typename?: 'QueuePointDto';
   date: Scalars['DateTime']['output'];
   id: Scalars['Int']['output'];
   row: Scalars['Int']['output'];
@@ -46,12 +46,12 @@ export type CreateQueuePointMutationVariables = Exact<{
 }>;
 
 
-export type CreateQueuePointMutation = { __typename?: 'Mutation', createQueuePoint: { __typename?: 'QueuePoint', row: number } };
+export type CreateQueuePointMutation = { __typename?: 'Mutation', createQueuePoint: { __typename?: 'QueuePointDto', row: number } };
 
 export type GetLastQueuePointQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetLastQueuePointQuery = { __typename?: 'Query', getLastQueuePoint: { __typename?: 'QueuePoint', row: number } };
+export type GetLastQueuePointQuery = { __typename?: 'Query', getLastQueuePoint: { __typename?: 'QueuePointDto', row: number } };
 
 
 export const CreateQueuePointDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateQueuePoint"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"row"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createQueuePoint"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"row"},"value":{"kind":"Variable","name":{"kind":"Name","value":"row"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"row"}}]}}]}}]} as unknown as DocumentNode<CreateQueuePointMutation, CreateQueuePointMutationVariables>;
