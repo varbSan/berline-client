@@ -16,6 +16,7 @@ const lastQueuePointRow = computed(() => lastQueuePoint.value?.row ?? 0);
 // Define the number of rows and columns
 const rows = 120;
 const cols = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l'];
+const squares = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 
 const isQueueCell = (col: string, row: number) => [`f${row}`,'e2', 'e3', 'e5', 'e6'].includes(col + row);
 
@@ -34,6 +35,21 @@ for (let i = 1; i <= rows; i++) {
   }
 }
 
+const kiosk = ['g21', 'g22', 'g23', 'h23', 'h21', 'h22']
+const bigBlock = ['d17', 'd16', 'c17', 'c16']
+const blocks = [
+  'c13-5', 'c13-6', 'c13-7', 'c13-8',
+  'c13-9', 'c13-10', 'c13-11', 'c13-12',
+  'c13-13', 'c13-14', 'c13-15', 'c13-16',
+
+  'c14-5', 'c14-6', 'c14-7', 'c14-8',
+  'c14-9', 'c14-10', 'c14-11', 'c14-12',
+  'c14-13', 'c14-14', 'c14-15', 'c14-16',
+
+  'c15-5', 'c15-6', 'c15-7', 'c15-8',
+  'c15-9', 'c15-10', 'c15-11', 'c15-12',
+  'c15-13', 'c15-14', 'c15-15', 'c15-16',
+]
 const zigzagSquares = [
   'e2-1', 'h2-1',
   'e2-5', 'h2-5',
@@ -61,33 +77,11 @@ const zigzagSquares = [
   'g7-9',
 ]
 
-const blocks = [
-  'c13-5', 'c13-6', 'c13-7', 'c13-8',
-  'c13-9', 'c13-10', 'c13-11', 'c13-12',
-  'c13-13', 'c13-14', 'c13-15', 'c13-16',
-
-  'c14-5', 'c14-6', 'c14-7', 'c14-8',
-  'c14-9', 'c14-10', 'c14-11', 'c14-12',
-  'c14-13', 'c14-14', 'c14-15', 'c14-16',
-
-  'c15-5', 'c15-6', 'c15-7', 'c15-8',
-  'c15-9', 'c15-10', 'c15-11', 'c15-12',
-  'c15-13', 'c15-14', 'c15-15', 'c15-16',
-]
-
-const bigBlock = ['d17', 'd16', 'c17', 'c16']
-
-const kiosk = ['g21', 'g22', 'g23', 'h23', 'h21', 'h22']
-
-const squares = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 </script>
 
 <template>
   <div class="bg-zinc-900 min-h-screen flex items-center justify-center p-4">
-
-
     <div class="grid grid-cols-12 w-full max-w-sm">
-      
       <div 
         v-for="(cell, cellIndex) in cells" 
         :key="cellIndex"
