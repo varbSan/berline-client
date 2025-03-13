@@ -75,7 +75,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "QueuePointDto",
+                "name": "QueuePointType",
                 "ofType": null
               }
             },
@@ -103,7 +103,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "QueuePointDto",
+                "name": "QueuePointType",
                 "ofType": null
               }
             },
@@ -134,12 +134,12 @@
       },
       {
         "kind": "OBJECT",
-        "name": "QueuePointDto",
+        "name": "QueuePointType",
         "description": null,
         "isOneOf": null,
         "fields": [
           {
-            "name": "date",
+            "name": "createdAt",
             "description": null,
             "args": [],
             "type": {
