@@ -8,6 +8,7 @@
     "devtools": "./node_modules/.bin/vue-devtools",
     "lint": "npx eslint 'src/**'",
     "lint:fix": "npx eslint 'src/**' --fix",
+    "prebuild": "graphql-codegen",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "tauri": "tauri",
