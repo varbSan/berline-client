@@ -8,7 +8,7 @@
     "devtools": "./node_modules/.bin/vue-devtools",
     "lint": "npx eslint 'src/**'",
     "lint:fix": "npx eslint 'src/**' --fix",
-    "build": "vue-tsc --noEmit && graphql-codegen && vite build",
+    "build": "vue-tsc --noEmit && graphql-codegen --config codegen.ts && vite build",
     "preview": "vite preview",
     "tauri": "tauri",
     "ios": "npm run tauri ios dev 'iPhone 16' & npm run codegen:watch",
