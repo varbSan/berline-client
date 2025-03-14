@@ -8,7 +8,7 @@ const isDevelopment = process.env.NODE_ENV === 'development';
 
 const config: CodegenConfig = {
   overwrite: true,
-  watch: true,
+  watch: isDevelopment,
   schema: isDevelopment ? process.env.VITE_API_URL : "./graphql.schema.json",
   documents: ["src/**/*.query.ts", "src/**/*.mutation.ts", "src/**/*.subscription.ts"],
   generates: {
