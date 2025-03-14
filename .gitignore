@@ -18,7 +18,6 @@ dist-ssr
 .env.production
 
 #generated
-graphql.schema.json
 src/gql
 
 # Editor directories and files
