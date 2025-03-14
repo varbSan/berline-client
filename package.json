@@ -4,8 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "dev:watch": "npm run dev & graphql-codegen --config codegen.ts --watch \"src/**/*.{query,mutation,subscription}.ts\"",
+    "dev": "vite & npm run codegen:watch",
     "devtools": "./node_modules/.bin/vue-devtools",
     "lint": "npx eslint 'src/**'",
     "lint:fix": "npx eslint 'src/**' --fix",
