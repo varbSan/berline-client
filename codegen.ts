@@ -4,6 +4,8 @@ import { config as dotenvConfig } from 'dotenv';
 
 dotenvConfig();
 
+const isDevelopment = process.env.NODE_ENV === 'development';
+
 const config: CodegenConfig = {
   overwrite: true,
   watch: true,
@@ -14,9 +16,11 @@ const config: CodegenConfig = {
       preset: "client",
       plugins: []
     },
-    "./graphql.schema.json": {
-      plugins: ["introspection"]
-    }
+    ...(isDevelopment && {
+      "./graphql.schema.json": {
+        plugins: ["introspection"]
+      } 
+    })
   }
 };
 
