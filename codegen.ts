@@ -4,7 +4,7 @@ import { config as dotenvConfig } from 'dotenv';
 
 dotenvConfig();
 
-const isDevelopment = process.env.NODE_ENV === 'development';
+const isDevelopment = process.env.VITE_NODE_ENV === 'development';
 
 const config: CodegenConfig = {
   overwrite: true,

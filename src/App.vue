@@ -1,17 +1,20 @@
 <script setup lang="ts">
-import { useMutation, useQuery } from '@vue/apollo-composable';
+import { useMutation, useQuery, useSubscription } from '@vue/apollo-composable';
 import { computed, ref } from 'vue';
-import { GET_LAST_QUEUE_POINT_QUERY } from './getLastQueuePoint.query';
-import { CREATE_QUEUE_POINT_MUTATION } from './api/mutations/createQueuePoint.mutation';
-import { CreateQueuePointMutation, CreateQueuePointMutationVariables, GetLastQueuePointQuery } from './gql/graphql';
+// import { GET_LAST_QUEUE_POINT_QUERY } from './getLastQueuePoint.query';
+import { CREATE_QUEUE_POINT_MUTATION } from './api/apollo/mutations/createQueuePoint.mutation';
+import { CreateQueuePointMutation, CreateQueuePointMutationVariables, GetLastQueuePointQuery, QueuePointCreatedSubscription, QueuePointCreatedSubscriptionVariables } from './gql/graphql';
+import { QUEUE_POINT_CREATED_SUBSCRIPTION } from './api/apollo/subscriptions/queuePointCreated.subscription';
+import { GET_LAST_QUEUE_POINT_QUERY } from './api/apollo/queries/getLastQueuePoint.query';
 
 
-const { result } = useQuery<GetLastQueuePointQuery>(GET_LAST_QUEUE_POINT_QUERY);
-const { mutate: createQueuePoint } = useMutation<CreateQueuePointMutation, CreateQueuePointMutationVariables>(
-  CREATE_QUEUE_POINT_MUTATION,
-  { update: (cache) => cache.evict({ fieldName: 'getLastQueuePoint' }) }
-);
-const lastQueuePoint = computed(() => result.value?.getLastQueuePoint)
+const { result: resultGetLastQueuePointQuery } = useQuery<GetLastQueuePointQuery>(GET_LAST_QUEUE_POINT_QUERY);
+const { result: resultQueuePointCreatedSubscription } = useSubscription<QueuePointCreatedSubscription, QueuePointCreatedSubscriptionVariables>(QUEUE_POINT_CREATED_SUBSCRIPTION); 
+const { mutate: createQueuePoint } = useMutation<CreateQueuePointMutation, CreateQueuePointMutationVariables>(CREATE_QUEUE_POINT_MUTATION);
+
+const lastQueuePoint = computed(
+  () => resultQueuePointCreatedSubscription.value?.queuePointCreated ?? resultGetLastQueuePointQuery.value?.getLastQueuePoint,
+)
 const lastQueuePointRow = computed(() => lastQueuePoint.value?.row ?? 0);
 
 const rows = 120;
