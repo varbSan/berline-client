@@ -1,12 +1,16 @@
 <script setup lang="ts">
 import { useMutation, useQuery, useSubscription } from '@vue/apollo-composable';
 import { computed, ref } from 'vue';
-// import { GET_LAST_QUEUE_POINT_QUERY } from './getLastQueuePoint.query';
+import { 
+  CreateQueuePointMutation,
+  CreateQueuePointMutationVariables,
+  GetLastQueuePointQuery,
+  QueuePointCreatedSubscription,
+  QueuePointCreatedSubscriptionVariables
+} from './gql/graphql';
 import { CREATE_QUEUE_POINT_MUTATION } from './api/apollo/mutations/createQueuePoint.mutation';
-import { CreateQueuePointMutation, CreateQueuePointMutationVariables, GetLastQueuePointQuery, QueuePointCreatedSubscription, QueuePointCreatedSubscriptionVariables } from './gql/graphql';
 import { QUEUE_POINT_CREATED_SUBSCRIPTION } from './api/apollo/subscriptions/queuePointCreated.subscription';
 import { GET_LAST_QUEUE_POINT_QUERY } from './api/apollo/queries/getLastQueuePoint.query';
-
 
 const { result: resultGetLastQueuePointQuery } = useQuery<GetLastQueuePointQuery>(GET_LAST_QUEUE_POINT_QUERY);
 const { result: resultQueuePointCreatedSubscription } = useSubscription<QueuePointCreatedSubscription, QueuePointCreatedSubscriptionVariables>(QUEUE_POINT_CREATED_SUBSCRIPTION); 
