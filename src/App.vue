@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useMutation, useQuery, useSubscription } from '@vue/apollo-composable';
 import { computed, ref } from 'vue';
-import { 
+import {
   CreateQueuePointMutation,
   CreateQueuePointMutationVariables,
   GetLastQueuePointQuery,
@@ -13,7 +13,7 @@ import { QUEUE_POINT_CREATED_SUBSCRIPTION } from './api/apollo/subscriptions/que
 import { GET_LAST_QUEUE_POINT_QUERY } from './api/apollo/queries/getLastQueuePoint.query';
 
 const { result: resultGetLastQueuePointQuery } = useQuery<GetLastQueuePointQuery>(GET_LAST_QUEUE_POINT_QUERY);
-const { result: resultQueuePointCreatedSubscription } = useSubscription<QueuePointCreatedSubscription, QueuePointCreatedSubscriptionVariables>(QUEUE_POINT_CREATED_SUBSCRIPTION); 
+const { result: resultQueuePointCreatedSubscription } = useSubscription<QueuePointCreatedSubscription, QueuePointCreatedSubscriptionVariables>(QUEUE_POINT_CREATED_SUBSCRIPTION);
 const { mutate: createQueuePoint } = useMutation<CreateQueuePointMutation, CreateQueuePointMutationVariables>(CREATE_QUEUE_POINT_MUTATION);
 
 const lastQueuePoint = computed(
@@ -25,7 +25,7 @@ const rows = 120;
 const cols = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l'];
 const squares = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
 
-const isQueueCell = (col: string, row: number) => [`f${row}`,'e2', 'e3', 'e5', 'e6'].includes(col + row);
+const isQueueCell = (col: string, row: number) => [`f${row}`, 'e2', 'e3', 'e5', 'e6'].includes(col + row);
 
 async function handleCreateQueuePoint(cellRow: number) {
   return await createQueuePoint({ row: cellRow })
@@ -86,40 +86,30 @@ const zigzagSquares = [
 </script>
 
 <template>
-  <div class="bg-zinc-900 min-h-screen flex items-center justify-center p-4">
-    <div class="grid grid-cols-12 w-full max-w-sm">
-      <div 
-        v-for="(cell, cellIndex) in cells" 
-        :key="cellIndex"
-        class="bg-transparent flex items-center justify-center text-transparent hover:text-white text-sm aspect-square border-1 border-purple-950"
-        @click="handleCreateQueuePoint(cell.row)"
-      >
-        <span class="absolute ">
-          {{ cell.col + cell.row }}
-        </span>
-        <div 
-          class="grid grid-cols-4 w-full gap-0.5" 
-          :class="{
-            'bg-zinc-700': cell.row === 1 || (cell.row >= 14  && ['a'].includes(cell.col)),
-            'bg-green-900': cell.row >= 5  && ['i', 'j', 'k', 'l'].includes(cell.col) 
+  <UApp>
+    <div class="bg-zinc-900 min-h-screen flex items-center justify-center p-4">
+      <div class="grid grid-cols-12 w-full max-w-sm">
+        <div v-for="(cell, cellIndex) in cells" :key="cellIndex"
+          class="bg-transparent flex items-center justify-center text-transparent hover:text-white text-sm aspect-square border-1 border-purple-950"
+          @click="handleCreateQueuePoint(cell.row)">
+          <span class="absolute ">{{ cell.col + cell.row }}
+          </span>
+          <div class="grid grid-cols-4 w-full gap-0.5" :class="{
+            'bg-zinc-700': cell.row === 1 || (cell.row >= 14 && ['a'].includes(cell.col)),
+            'bg-green-900': cell.row >= 5 && ['i', 'j', 'k', 'l'].includes(cell.col)
               || (cell.row >= 3 && cell.row <= 12) && ['a', 'b', 'c'].includes(cell.col),
             'bg-zinc-600 translate-3.5': bigBlock.includes(cell.col + cell.row),
             'bg-zinc-400': kiosk.includes(cell.col + cell.row)
-          }"
-        >
-          <div 
-            v-for="square in squares" 
-            :key="square"
-            :id="cell.col + cell.row + '-' + square"
-            class="flex items-center justify-center text-white aspect-square "
-            :class="{
-              'bg-zinc-950': zigzagSquares.includes(`${cell.col + cell.row + '-' + square}`),
-              'bg-zinc-600 translate-full': blocks.includes(`${cell.col + cell.row + '-' + square}`),
-              'bg-indigo-900': (lastQueuePointRow >= cell.row) && isQueueCell(cell.col, cell.row)
-            }"
-          />
+          }">
+            <div v-for="square in squares" :key="square" :id="cell.col + cell.row + '-' + square"
+              class="flex items-center justify-center text-white aspect-square " :class="{
+                'bg-zinc-950': zigzagSquares.includes(`${cell.col + cell.row + '-' + square}`),
+                'bg-zinc-600 translate-full': blocks.includes(`${cell.col + cell.row + '-' + square}`),
+                'bg-indigo-900': (lastQueuePointRow >= cell.row) && isQueueCell(cell.col, cell.row)
+              }" />
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </UApp>
 </template>

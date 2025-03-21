@@ -2,11 +2,23 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import { fileURLToPath, URL } from 'node:url'
 import vueDevTools from 'vite-plugin-vue-devtools'
+import ui from '@nuxt/ui/vite'
 const host = process.env.TAURI_DEV_HOST;
 
 // https://vitejs.dev/config/
 export default defineConfig(async () => ({
-  plugins: [vue(), vueDevTools()],
+  plugins: [
+    vue(),
+    vueDevTools(), 
+    ui({
+      ui: {
+        colors: {
+          primary: 'indigo',
+          neutral: 'zinc'
+        }
+      }
+    })
+  ],
 
   resolve: {
     alias: {
