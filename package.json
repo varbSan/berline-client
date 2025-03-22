@@ -19,7 +19,7 @@
   "dependencies": {
     "@apollo/client": "^3.13.1",
     "@graphql-codegen/cli": "^5.0.5",
-    "@nuxt/ui": "^3.0.0",
+    "@nuxt/ui": "^3.0.1",
     "@tauri-apps/api": "^2",
     "@tauri-apps/plugin-opener": "^2",
     "@vue/apollo-composable": "^4.2.1",
