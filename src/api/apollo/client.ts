@@ -9,12 +9,11 @@ const httpLink = createHttpLink({
   uri: import.meta.env.VITE_API_URL,
 })
 
-
 // Create a GraphQLWsLink link:
 const wsLink = new GraphQLWsLink(
   createClient({
-    url: import.meta.env.VITE_API_URL_WS
-  })
+    url: import.meta.env.VITE_API_URL_WS,
+  }),
 )
 
 // using the ability to split links, you can send data to each link
@@ -29,7 +28,7 @@ const link = split(
     )
   },
   wsLink,
-  httpLink
+  httpLink,
 )
 
 // Cache implementation

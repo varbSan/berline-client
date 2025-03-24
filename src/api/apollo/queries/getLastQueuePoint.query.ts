@@ -1,4 +1,4 @@
-import { gql } from 'graphql-tag';
+import { gql } from 'graphql-tag'
 
 export const GET_LAST_QUEUE_POINT_QUERY = gql`
   query GetLastQueuePoint {
@@ -7,4 +7,4 @@ export const GET_LAST_QUEUE_POINT_QUERY = gql`
       row
     }
   }
-`;
+`
