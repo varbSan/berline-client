@@ -1,30 +1,32 @@
-import globals from "globals";
-import pluginJs from "@eslint/js";
-import tseslint from "typescript-eslint";
-import pluginVue from "eslint-plugin-vue";
+import antfu from '@antfu/eslint-config'
 
+export default antfu()
 
-/** @type {import('eslint').Linter.Config[]} */
-export default [
-  {files: ["src/**/*.{js,mjs,cjs,ts,vue}"]},
-  {languageOptions: { globals: globals.browser }},
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
-  ...pluginVue.configs["flat/essential"],
-  {files: ["**/*.vue"], languageOptions: {parserOptions: {parser: tseslint.parser}}},
+// import pluginVue from 'eslint-plugin-vue'
+// import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript'
+// import pluginVitest from '@vitest/eslint-plugin'
 
-  {
-    ignores: ["src/components/ui/**", "src-tauri", "node_modules"],
-  },
+// // To allow more languages other than `ts` in `.vue` files, uncomment the following lines:
+// // import { configureVueProject } from '@vue/eslint-config-typescript'
+// // configureVueProject({ scriptLangs: ['ts', 'tsx'] })
+// // More info at https://github.com/vuejs/eslint-config-typescript/#advanced-setup
 
-  {
-    rules: {
-      '@typescript-eslint/no-unused-vars': [
-        'error',
-        {
-          argsIgnorePattern: '^_', // Ignore parameters that start with '_'
-        },
-      ],
-    },
-  },
-];
+// export default defineConfigWithVueTs(
+//   {
+//     name: 'app/files-to-lint',
+//     files: ['**/*.{ts,mts,tsx,vue}'],
+//   },
+
+//   {
+//     name: 'app/files-to-ignore',
+//     ignores: ['**/dist/**', '**/dist-ssr/**', '**/coverage/**'],
+//   },
+
+//   pluginVue.configs['flat/essential'],
+//   vueTsConfigs.recommended,
+
+//   {
+//     ...pluginVitest.configs.recommended,
+//     files: ['src/**/__tests__/*'],
+//   },
+// )
