@@ -1,6 +1,13 @@
+# apollo generated
+src/gql
+
 # Auto-generated type declarations
 auto-imports.d.ts
 components.d.ts
+
+# environment variables
+.env
+.env.production.local
 
 # Logs
 logs
@@ -11,26 +18,25 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-
 node_modules
+.DS_Store
 dist
 dist-ssr
+coverage
 *.local
 
-.env
-.env.development
-.env.production
+/cypress/videos/
+/cypress/screenshots/
 
-#generated
-src/gql
 
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
 .idea
-.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+*.tsbuildinfo
