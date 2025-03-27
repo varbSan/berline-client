@@ -1,21 +1,14 @@
 <!-- eslint-disable antfu/consistent-list-newline -->
 <script setup lang="ts">
-import type {
-  CreateQueuePointMutation,
-  CreateQueuePointMutationVariables,
-  GetLastQueuePointQuery,
-  QueuePointCreatedSubscription,
-  QueuePointCreatedSubscriptionVariables,
-} from './gql/graphql'
 import { useMutation, useQuery, useSubscription } from '@vue/apollo-composable'
 import { computed, ref } from 'vue'
 import { CREATE_QUEUE_POINT_MUTATION } from './api/apollo/mutations/createQueuePoint.mutation'
 import { GET_LAST_QUEUE_POINT_QUERY } from './api/apollo/queries/getLastQueuePoint.query'
 import { QUEUE_POINT_CREATED_SUBSCRIPTION } from './api/apollo/subscriptions/queuePointCreated.subscription'
 
-const { result: resultGetLastQueuePointQuery } = useQuery<GetLastQueuePointQuery>(GET_LAST_QUEUE_POINT_QUERY)
-const { result: resultQueuePointCreatedSubscription } = useSubscription<QueuePointCreatedSubscription, QueuePointCreatedSubscriptionVariables>(QUEUE_POINT_CREATED_SUBSCRIPTION)
-const { mutate: createQueuePoint } = useMutation<CreateQueuePointMutation, CreateQueuePointMutationVariables>(CREATE_QUEUE_POINT_MUTATION)
+const { result: resultGetLastQueuePointQuery } = useQuery(GET_LAST_QUEUE_POINT_QUERY)
+const { result: resultQueuePointCreatedSubscription } = useSubscription(QUEUE_POINT_CREATED_SUBSCRIPTION)
+const { mutate: createQueuePoint } = useMutation(CREATE_QUEUE_POINT_MUTATION)
 
 const lastQueuePoint = computed(
   () => resultQueuePointCreatedSubscription.value?.queuePointCreated ?? resultGetLastQueuePointQuery.value?.getLastQueuePoint,
