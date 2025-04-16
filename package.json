@@ -1,5 +1,5 @@
 {
-  "name": "bergline-client",
+  "name": "berline-client",
   "type": "module",
   "version": "0.1.0",
   "private": true,
@@ -13,7 +13,7 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit",
     "codegen": "graphql-codegen --config codegen.ts",
-    "codegen:watch": "graphql-codegen-esm --watch \"../bergline-svr/schema.gql\" \"src/**/*.{query,mutation,subscription}.ts\""
+    "codegen:watch": "graphql-codegen-esm --watch \"../berline-server/schema.gql\" \"src/**/*.{query,mutation,subscription}.ts\""
   },
   "dependencies": {
     "@apollo/client": "^3.13.1",
