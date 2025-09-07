@@ -28,6 +28,10 @@
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
   },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-arm64-gnu": "^4.50.1",
+    "@tailwindcss/oxide-linux-arm64-gnu": "^4.1.13"
+  },
   "devDependencies": {
     "@antfu/eslint-config": "^4.11.0",
     "@graphql-codegen/cli": "^5.0.5",
@@ -49,4 +53,5 @@
     "vitest": "^3.0.8",
     "vue-tsc": "^2.2.8"
   }
+
 }
